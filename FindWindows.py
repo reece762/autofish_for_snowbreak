@@ -23,7 +23,8 @@ def findwindows():
                 #print("Saved")
 
     if not found_windows:
-        print("Windows not found")
+        print("请开启游戏")
+        input("按任意键结束...")
 
 def capwindows():
     partial_titles = ["Snowbreak", "尘白禁区"]
