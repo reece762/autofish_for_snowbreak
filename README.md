@@ -1,11 +1,10 @@
 # autofish_for_snowbreak
 
-終於趕製好了，python自行安裝環境，顯卡剛好炸了，明天再算
+右邊Release下載exe版本
 
-终于赶制好了，python自行安装环境，显卡刚好炸了，明天再算
+右边Release下载exe版本
 
-Finally finished it. Python installed the environment by yourself. The graphics card just exploded. I’ll figure it out tomorrow.
-
+On the right, click release to download the exe version
 
 EXE on there>>>>>>>>>>>
 
