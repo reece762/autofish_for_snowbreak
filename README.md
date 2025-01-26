@@ -1,5 +1,7 @@
 # autofish_for_snowbreak
 
+更新了新UI，大概能跑吧
+
 右邊Release下載exe版本
 
 右边Release下载exe版本
