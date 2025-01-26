@@ -22,10 +22,17 @@ def find_image_in_screenshot(screenshot, template_path):
     screenshot_cv = cv2.cvtColor(screenshot_np, cv2.COLOR_RGB2BGR)
 
     template = cv2.imread(template_path, cv2.IMREAD_UNCHANGED)
+    if template.shape[2] == 4:
+        template = cv2.cvtColor(template, cv2.COLOR_BGRA2BGR)
+
+    '''if template is None:
+        print(f"Error: Unable to load template image from {template_path}")
+        return False'''
     w, h = template.shape[1], template.shape[0]
+    cv2.imshow('Detected', template)
 
     res = cv2.matchTemplate(screenshot_cv, template, cv2.TM_CCOEFF_NORMED)
-    threshold = 0.8
+    threshold = 0.7
     loc = np.where(res >= threshold)
 
     for pt in zip(*loc[::-1]):
@@ -49,8 +56,8 @@ def create_folder_if_not_exists(directory, folder_name):
     if not os.path.exists(os.path.join(directory, folder_name)):
         os.makedirs(os.path.join(directory, folder_name)) 
         print(f'已創建 {folder_name} 文件夾')
-    else:
-        print(f'{folder_name} 文件夾已存在')
+    '''else:
+        print(f'{folder_name} 文件夾已存在')'''
 
     
 def detect_yellow_circles(image_path):
@@ -167,9 +174,12 @@ def main():
     create_folder_if_not_exists(directory, folder_name)
     cast_line_img = "png/cast_line.png"
     bite_img = "png/bite.png"
-    drag_img = "png/drag.png"    
-    global previous_percentage_yellow   
+    drag_img = "png/drag.png"
+    drag_img2 = "png/drag2.png"
+    global previous_percentage_yellow
+    print("请到指定位置准备")
     FindWindows.findwindows()
+    time.sleep(5)
     while True:
         previous_percentage_yellow = None
         screenshot_pil = FindWindows.capwindows()
@@ -181,7 +191,9 @@ def main():
             print('开始钓鱼')
             while time.time() - start_time < 10:  # 最多检查60秒的bite_img
                 screenshot_pil = FindWindows.capwindows()
-                if find_image_in_screenshot(screenshot_pil, drag_img):
+                #if find_image_in_screenshot(screenshot_pil, drag_img) or find_image_in_screenshot(screenshot_pil, drag_img2):
+
+                if find_image_in_screenshot(screenshot_pil, drag_img2):
                     pyautogui.press('space')
                     found_bite = True
                     print('上钓')        
